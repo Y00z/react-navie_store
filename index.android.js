@@ -10,7 +10,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    Navigator
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 var TabHome = require('./TabPage/Home/TabHome')
@@ -27,17 +28,17 @@ export default class rn_store extends Component {
     }
 
     render() {
-        var tabHome = (<TabHome />)
-        var tabShow = (<TabShow />)
-        var tabMore = (<TabMore />)
-        var tabMine = (<TabMine />)
+        // var tabHome = (<TabHome />)
+        // var tabShow = (<TabShow />)
+        // var tabMore = (<TabMore />)
+        // var tabMine = (<TabMine />)
         return (
             <TabNavigator
-                tabBarStyle={{ height: 52, overflow: 'hidden' }}>
-                {this.renderTabBarItem('home', "首页", 'icon_tabbar_homepage', 'icon_tabbar_homepage_selected', tabHome)}
-                {this.renderTabBarItem('show', "商家", 'icon_tabbar_merchant_normal', 'icon_tabbar_merchant_selected', tabShow)}
-                {this.renderTabBarItem('more', "更多", 'icon_tabbar_misc', 'icon_tabbar_misc_selected', tabMore)}
-                {this.renderTabBarItem('mine', "我的", 'icon_tabbar_mine', 'icon_tabbar_mine_selected', tabMine, "1")}
+                tabBarStyle={{height: 52, overflow: 'hidden'}}>
+                {this.renderTabBarItem('home', "首页", 'icon_tabbar_homepage', 'icon_tabbar_homepage_selected', TabHome,)}
+                {this.renderTabBarItem('show', "商家", 'icon_tabbar_merchant_normal', 'icon_tabbar_merchant_selected', TabShow)}
+                {this.renderTabBarItem('more', "更多", 'icon_tabbar_misc', 'icon_tabbar_misc_selected', TabMore)}
+                {this.renderTabBarItem('mine', "我的", 'icon_tabbar_mine', 'icon_tabbar_mine_selected', TabMine, "1")}
             </TabNavigator>
         );
     }
@@ -47,11 +48,19 @@ export default class rn_store extends Component {
             <TabNavigator.Item
                 selected={this.state.selectedTab === selectedTab}
                 title={title}
-                renderIcon={() => <Image style={styles.img} source={{uri : renderIcon}} />}
-                renderSelectedIcon={() => <Image style={styles.img} source={{uri :renderSelectedIcon}} />}
-                onPress={() => this.setState({ selectedTab: selectedTab })}
+                renderIcon={() => <Image style={styles.img} source={{uri: renderIcon}}/>}
+                renderSelectedIcon={() => <Image style={styles.img} source={{uri: renderSelectedIcon}}/>}
+                onPress={() => this.setState({selectedTab: selectedTab})}
                 badgeText={badgeText}>
-                {pageView}
+                <Navigator
+                    initialRoute={{name: {title}, component: pageView}}
+                    configureScene={(route, routeStack) => {
+                        return Navigator.SceneConfigs.PushFromRight;
+                    }}
+                    renderScene={(route, navigator) => {
+                        return <route.component navigator={navigator}  {...route.passProps} />;
+                    }}
+                />
             </TabNavigator.Item>
         )
     }
