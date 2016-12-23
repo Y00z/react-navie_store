@@ -8,38 +8,69 @@ import {
     AppRegistry,
     StyleSheet,
     Text,
-    View
+    View,
+    TouchableOpacity,
+    TextInput,
+    Image
 } from 'react-native';
+
+var Dimensions = require('Dimensions');
+var {height, width} = Dimensions.get('window');
 
 export default class More extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    更多
-                </Text>
+                {this.renderNavBar()}
             </View>
         );
+    }
+
+    renderNavBar() {
+        return (
+            <View style={styles.navBarStyle}>
+                {/*中间*/}
+                <Text style={styles.topMoreTextStyle}>更多</Text>
+
+                {/*右边*/}
+                <TouchableOpacity style={styles.topRightStyle} activeOpacity={0.6} onPress={()=>{
+                    alert("设置");
+                }}>
+                    <Image style={styles.ToprightImgStyle} source={{uri :'icon_mine_setting' }} />
+                </TouchableOpacity>
+            </View>
+        )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        flex: 1
+    },
+    navBarStyle: {
+        height: 50,
+        backgroundColor: 'rgba(255,96,0,1.0)',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        justifyContent: 'center',
+        flexDirection: 'row',
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    topMoreTextStyle: {
+        color : 'white',
+        fontSize : 18
     },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
+    ToprightStyle: {
+        flexDirection: 'row',
     },
+    ToprightImgStyle: {
+        height: 23,
+        width: 23,
+
+    },
+    topRightStyle:{
+        position : 'absolute',
+        right : 20,
+        bottom : 15
+    }
 });
 
 module.exports = More;

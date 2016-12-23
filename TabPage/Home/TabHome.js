@@ -11,7 +11,8 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    Image
+    Image,
+    Platform
 } from 'react-native';
 
 var Dimensions = require('Dimensions');
@@ -21,11 +22,30 @@ var TabHomeDetail = require('./TabHomeDetail')
 export default class Home extends Component {
     render() {
         return (
+            <View style={styles.container}>
+                {/*头部*/}
+                {this.renderNavBar()}
+            </View>
+        );
+    }
+
+    pushToHomeCityDetail() {
+        this.props.navigator.push({
+            component: TabHomeDetail,
+            title: '详情页',
+            passProps: {
+                data: "武汉"
+            }
+        })
+    }
+
+    renderNavBar() {
+        return (
             <View style={styles.navBarStyle}>
                 <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     this.pushToHomeCityDetail()
                 }}>
-                    <Text style={{color: 'white'}}>武汉</Text>
+                    <Text style={{color: 'white',fontSize : 15}}>武汉</Text>
                 </TouchableOpacity>
                 <TextInput underlineColorAndroid="transparent" placeholder={"输入商家、品类、商圈"} style={styles.topInputStyle}/>
                 <View style={styles.ToprightStyle}>
@@ -41,17 +61,7 @@ export default class Home extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        );
-    }
-
-    pushToHomeCityDetail(){
-        this.props.navigator.push({
-            component:TabHomeDetail,
-            title:'详情页',
-            passProps:{
-                data : "武汉"
-            }
-        })
+        )
     }
 }
 
@@ -67,10 +77,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     topInputStyle: {
-        height: 35,
+        height: 40,
         width: width * 0.70,
         backgroundColor: 'white',
-        borderRadius: 35,
+        borderRadius: 18,
     },
     ToprightStyle: {
         flexDirection: 'row',
@@ -79,12 +89,7 @@ const styles = StyleSheet.create({
         height: 23,
         width: 23,
         marginLeft: 8
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+    }
 });
 
 module.exports = Home;
