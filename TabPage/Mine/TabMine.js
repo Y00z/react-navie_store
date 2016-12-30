@@ -9,7 +9,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 var TabMineItem = require('./TabMineItem');
 var TabMineMiddle = require('./TabMineMiddle');
@@ -18,7 +19,7 @@ var TabMineHeaderView = require('./TabMineHeaderView');
 export default class Mine extends Component {
     render() {
         return (
-            <View style={styles.container}>
+                <ScrollView style={styles.container}>
                 <TabMineHeaderView />
                 <TabMineItem leftIconName="collect" leftTitle="我的订单" rightTitle="查看全部订单"/>
                 <TabMineMiddle />
@@ -35,7 +36,7 @@ export default class Mine extends Component {
                 <View style={{marginTop: 10}}>
                     <TabMineItem leftIconName="pay" leftTitle="我要合作" rightTitle="轻松开店,招财进宝"/>
                 </View>
-            </View>
+                </ScrollView>
         );
     }
 

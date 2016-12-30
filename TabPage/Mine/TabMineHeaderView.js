@@ -19,6 +19,7 @@ var {width, height} = Dimensions.get('window')
 var OrderData = require('./OrderData.json')
 
 export default class TabMineHeaderView extends Component {
+
     render() {
         return (
             <View style={styles.backTopStyle}>
