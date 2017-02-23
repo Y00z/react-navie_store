@@ -18,6 +18,7 @@ var Dimensions = require('Dimensions');
 var {height, width} = Dimensions.get('window');
 var TabHeader = require('./TabHeader');
 var TabTopView = require('./TabTopView');
+var TabTopMiddleView = require('./TabTopMiddleView')
 
 export default class Home extends Component {
     render() {
@@ -26,6 +27,7 @@ export default class Home extends Component {
                 <TabHeader />
                 <ScrollView>
                     <TabTopView/>
+                    <TabTopMiddleView/>
                 </ScrollView>
             </View>
         );
