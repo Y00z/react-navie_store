@@ -2,7 +2,7 @@
   "count": 4,
   "data": [
     {
-      "detailurl": "imeituan://www.meituan.com/web/?url=http://i.meituan.com/shoppingmall/smDetail/4374715",
+      "detailurl": "http://i.meituan.com/shoppingmall/smDetail/4374715",
       "promotionIcon": "",
       "name": "正佳广场",
       "img": "http://p0.meituan.net/codeman/b4686ddc7270363868fcff917d3526cd37899.jpg",
@@ -17,7 +17,7 @@
       "promotionText": "送福利 商品低至1.5折"
     },
     {
-      "detailurl": "imeituan://www.meituan.com/web/?url=http://i.meituan.com/shoppingmall/smDetail/50606658",
+      "detailurl": "http://i.meituan.com/shoppingmall/smDetail/50606658",
       "promotionIcon": "",
       "name": "白云万达广场",
       "img": "http://p0.meituan.net/codeman/c217fffcbf9b434844434a0acbdb434827837.jpg",
@@ -32,7 +32,7 @@
       "promotionText": "春来花开 满100最高减60"
     },
     {
-      "detailurl": "imeituan://www.meituan.com/web/?url=http://i.meituan.com/shoppingmall/smDetail/75813274",
+      "detailurl": "http://i.meituan.com/shoppingmall/smDetail/75813274",
       "promotionIcon": "",
       "name": "凯德广场●云尚",
       "img": "http://p0.meituan.net/codeman/2ad0711b7ffa9433bdc2577e7896082937607.jpg",
@@ -47,7 +47,7 @@
       "promotionText": "新春送福利 购物满额有好礼"
     },
     {
-      "detailurl": "imeituan://www.meituan.com/web/?url=http://i.meituan.com/shoppingmall/smDetail/41692498",
+      "detailurl": "http://i.meituan.com/shoppingmall/smDetail/41692498",
       "promotionIcon": "",
       "name": "来又来广场",
       "img": "http://p0.meituan.net/codeman/d675f4ad9b7ece9f0593db298beb082d31800.jpg",
@@ -63,5 +63,5 @@
     }
   ],
   "tips": "全部4家",
-  "jumpto": "imeituan://www.meituan.com/web/?url=http://i.meituan.com/shoppingmall/smList?sid=@geodist:asc"
+  "jumpto": "http://i.meituan.com/shoppingmall/smList?sid=@geodist:asc"
 }

@@ -67,13 +67,7 @@ export default class TabMineHeaderView extends Component {
         OrderData.map((data, i) =>
             itemArr.push(
                 <TouchableOpacity activeOpacity={0.7} key={i} onPress={() => {
-                    if (i == 0) {
-                        alert("0")
-                    } else if (i == 1) {
-                        alert("1")
-                    } else if (i == 2) {
-                        alert("2")
-                    }
+                    alert(i);
                 }}>
                     <View style={styles.orderItemViewStyle}>
                         <Text style={styles.orderItemTextStyle}>{data.number}</Text>

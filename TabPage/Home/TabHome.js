@@ -11,7 +11,8 @@ import {
     View,
     Image,
     Platform,
-    ScrollView
+    ScrollView,
+    Navigator
 } from 'react-native';
 
 var Dimensions = require('Dimensions');
@@ -19,15 +20,18 @@ var {height, width} = Dimensions.get('window');
 var TabHeader = require('./TabHeader');
 var TabTopView = require('./TabTopView');
 var TabTopMiddleView = require('./TabTopMiddleView')
+var TabShopTopView = require('./TabShopTopView');
 
 export default class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
                 <TabHeader />
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <TabTopView/>
                     <TabTopMiddleView/>
+                    <TabShopTopView
+                    />
                 </ScrollView>
             </View>
         );
