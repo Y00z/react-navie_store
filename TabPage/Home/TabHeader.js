@@ -3,7 +3,6 @@
  */
 
 
-
 import React, {Component} from 'react';
 import {
     AppRegistry,
@@ -21,6 +20,12 @@ var {height, width} = Dimensions.get('window');
 var TabHomeDetail = require('./TabHomeDetail')
 
 export default class TabHeader extends Component {
+
+
+    defaultProps = {
+        popToHomeCityDetail: null
+    }
+
     render() {
         return (
             <View>
@@ -31,13 +36,7 @@ export default class TabHeader extends Component {
     }
 
     pushToHomeCityDetail() {
-        this.props.navigator.push({
-            component: TabHomeDetail,
-            title: '详情页',
-            passProps: {
-                data: "武汉"
-            }
-        })
+        this.props.popToHomeCityDetail()
     }
 
     renderNavBar() {
@@ -46,7 +45,7 @@ export default class TabHeader extends Component {
                 <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     this.pushToHomeCityDetail()
                 }}>
-                    <Text style={{color: 'white',fontSize : 15}}>武汉</Text>
+                    <Text style={{color: 'white', fontSize: 15}}>武汉</Text>
                 </TouchableOpacity>
                 <TextInput underlineColorAndroid="transparent" placeholder={"输入商家、品类、商圈"} style={styles.topInputStyle}/>
                 <View style={styles.ToprightStyle}>

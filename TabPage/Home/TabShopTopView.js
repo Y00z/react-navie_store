@@ -42,6 +42,13 @@ class CommonCell extends Component {
 }
 
 export default class TabShopTopView extends Component {
+
+    defaultProps = {
+        //回调函数
+        popToHomeView: null
+    }
+
+
     render() {
         return (
             <View style={{marginTop: 10}}>
@@ -51,7 +58,7 @@ export default class TabShopTopView extends Component {
                     rightTitle={XMG_Home_D5.tips}
                 />
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={{backgroundColor: 'white', height: 150, marginTop: 2, flexDirection: 'row'}}>
+                    <View style={{backgroundColor: 'white', height: 120, marginTop: 2, flexDirection: 'row'}}>
                         {this.renderData()}
                     </View>
                 </ScrollView>
@@ -78,16 +85,21 @@ export default class TabShopTopView extends Component {
         showData.map((data, i) =>
             itemArr.push(
                 <TouchableOpacity key={i} onPress={() => {
-                    alert(i);
+                    this.clickItem(data.detailurl,data.name);
                 }}>
                     <View style={{margin: 10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                        <Image style={{width: 120, height: 120, borderRadius: 10}} source={{uri: data.img}}/>
+                        <Image style={{width: 100, height: 80, borderRadius: 10}} source={{uri: data.img}}/>
                         <Text style={{color: 'black'}}>{data.name}</Text>
                     </View>
                 </TouchableOpacity>
             )
         )
         return itemArr;
+    }
+
+    clickItem(url,name) {
+        if (url == null) return;
+        this.props.popToHomeView(url,name)
     }
 }
 

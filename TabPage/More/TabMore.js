@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     topMoreTextStyle: {
-        color: 'white',
+        color: 'black',
         fontSize: 18
     },
     ToprightStyle: {

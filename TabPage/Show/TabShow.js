@@ -29,7 +29,7 @@ export default class Show extends Component {
             <View style={styles.container}>
                 <View style={styles.headerStyle}>
                     <Image style={{width:30 , height:30}} source={{uri:'icon_shop_local'}}/>
-                    <Text style={{color:'white',fontSize:16}}>商家</Text>
+                    <Text style={{color:'black',fontSize:18}}>商家</Text>
                     <Image style={{width:30 , height:30}} source={{uri:'icon_shop_search'}} />
                 </View>
                 <WebView
