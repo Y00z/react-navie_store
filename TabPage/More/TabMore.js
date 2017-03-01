@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     ToprightImgStyle: {
-        height: 23,
-        width: 23,
+        height: 25,
+        width: 25,
     },
     topRightStyle: {
         position: 'absolute',
-        right: 20,
-        bottom: 15
+        right: 13,
+        bottom: 13
     }
 });
 

@@ -29,7 +29,7 @@ class CommonView extends Component {
     render() {
         return (
             <View style={[styles.rightTopViewStyle, {width: this.props.screenWidth}]}>
-                <View>
+                <View style={{marginLeft:5}}>
                     <Text style={{color: this.props.titleColor}}>{this.props.title}</Text>
                     <Text>{this.props.subTitle}</Text>
                 </View>
@@ -37,6 +37,7 @@ class CommonView extends Component {
             </View>
         );
     }
+
 }
 
 
@@ -65,7 +66,7 @@ export default class TabTopMiddleView extends Component {
         );
     }
 
-    renderButtomWidthView(){
+    renderButtomWidthView() {
         var itemArr = []
         var dataTop = XMG_Home_D4.dataTop
         for (var i = 0; i < dataTop.length; i++) {
@@ -84,18 +85,26 @@ export default class TabTopMiddleView extends Component {
         return itemArr
     }
 
+
+    dealWithImgUrl(url) {
+        if (url.search('w.h') == -1)
+            return url
+        else
+            return url.replace('w.h', '120.90')
+    }
+
     renderBottomView(index) {
         var itemArr = []
         var dataBottom = XMG_Home_D4.data
-        if(index ==2)
-            dataBottom = dataBottom.slice(2,4)
+        if (index == 2)
+            dataBottom = dataBottom.slice(2, 4)
         for (var i = 0; i < dataBottom.length; i++) {
             var data = dataBottom[i]
             itemArr.push(
                 <CommonView
                     title={data.maintitle}
                     subTitle={data.title}
-                    icon={data.img}
+                    icon={this.dealWithImgUrl(data.imageurl)}
                     titleColor={data.typeface_color}
                     screenWidth={width / 2}
                     key={i}

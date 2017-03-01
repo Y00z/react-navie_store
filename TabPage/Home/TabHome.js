@@ -23,6 +23,7 @@ var TabTopMiddleView = require('./TabTopMiddleView')
 var TabShopTopView = require('./TabShopTopView')
 var TabShowDetail = require('./TabShowDetail')
 var TabHomeDetail = require('./TabHomeDetail')
+var TabHomeYouLike = require('./TabHomeYouLike');
 
 export default class Home extends Component {
     render() {
@@ -36,6 +37,8 @@ export default class Home extends Component {
                     <TabTopMiddleView/>
                     <TabShopTopView      //把回调得到的url传递给pushToShowDetail
                         popToHomeView={(url,name) => this.pushToShowDetail(url,name)}
+                    />
+                    <TabHomeYouLike
                     />
                 </ScrollView>
             </View>

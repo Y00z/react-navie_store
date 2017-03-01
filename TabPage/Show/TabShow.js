@@ -28,9 +28,9 @@ export default class Show extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.headerStyle}>
-                    <Image style={{width:30 , height:30}} source={{uri:'icon_shop_local'}}/>
+                    <Image style={{width:30 , height:30}} source={{uri:'icon_homepage_map_selected'}}/>
                     <Text style={{color:'black',fontSize:18}}>商家</Text>
-                    <Image style={{width:30 , height:30}} source={{uri:'icon_shop_search'}} />
+                    <Image style={{width:20 , height:20}} source={{uri:'icon_homepage_search'}} />
                 </View>
                 <WebView
                     ref="webview"
