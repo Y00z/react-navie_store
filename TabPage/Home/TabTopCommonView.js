@@ -8,31 +8,59 @@ import {
     Text,
     View,
     Image,
-    ScrollView
+    TouchableOpacity
 } from 'react-native';
 var Dimensions = require("Dimensions");
 var {width, height} = Dimensions.get('window')
-var HomeTopMiddleLeft = require('./../../LocalData/HomeTopMiddleLeft.json')
-require('./../../LocalData/HomeTopMiddle.json')
 
 export default class CommonView extends Component {
     defaultProps = {
-        title: '',
-        titleColor: '',
-        subTitle: '',
-        icon: '',
-        screenWidth:0,
+        leftImg: '',
+        leftTitle: '',
+        rightTitle: '',
+        jumpto:'',
+        callBackClickCell: null
     }
 
     render() {
         return (
-            <View style={[styles.rightTopViewStyle,{width: this.props.screenWidth}]}>
-                <View>
-                    <Text style={{color: this.props.titleColor}}>{this.props.title}</Text>
-                    <Text>{this.props.subTitle}</Text>
+            <TouchableOpacity onPress={() => {
+                this.clickItem(this.props.jumpto,this.props.leftTitle)
+            }}>
+                <View style={styles.container}>
+                    <View style={styles.boundaryStyle}>
+                        <Image style={{width: 25, height: 25, marginRight: 5}} source={{uri: this.props.leftImg}}/>
+                        <Text>{this.props.leftTitle}</Text>
+                    </View>
+                    <View style={styles.boundaryStyle}>
+                        <Text>{this.props.rightTitle}</Text>
+                        <Image style={{width: 15, height: 15, marginLeft: 5}} source={{uri: 'icon_cell_rightarrow'}}/>
+                    </View>
                 </View>
-                <Image style={{width: 80, height: 50,resizeMode: 'contain'}} source={{uri: this.props.icon}}/>
-            </View>
-        );
+            </TouchableOpacity>
+        )
+    }
+
+    clickItem(url, name) {
+        if (this.props.callBackClickCell == null) return
+        this.props.callBackClickCell(url, name)
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        width: width,
+        height: 45,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10
+    },
+    boundaryStyle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+})
+
+module.exports = CommonView;

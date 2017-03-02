@@ -35,9 +35,9 @@ export default class TabMoreItem extends Component {
     render() {
         return (
             <TouchableOpacity style={{marginTop:2}} activeOpacity={0.8} onPress={()=>{
-                if (this.props.isSwitch) {
-
-                }
+                this.setState({
+                    isOn :!this.state.isOn
+                })
             }}>
                 <View style={styles.container}>
                     <Text style={styles.TitleStyle}>{this.props.title}</Text>

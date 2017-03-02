@@ -16,30 +16,7 @@ import {
 var Dimensions = require('Dimensions')
 var {width, height} = Dimensions.get('window')
 var XMG_Home_D6 = require('./../../LocalData/XMG_Home_D6.json')
-
-class CommonCell extends Component {
-
-    defaultProps = {
-        leftImg: '',
-        leftTitle: '',
-        rightTitle: ''
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.boundaryStyle}>
-                    <Image style={{width: 25, height: 25, marginRight: 5}} source={{uri: this.props.leftImg}}/>
-                    <Text>{this.props.leftTitle}</Text>
-                </View>
-                <View style={styles.boundaryStyle}>
-                    <Text>{this.props.rightTitle}</Text>
-                    <Image style={{width: 15, height: 15, marginLeft: 5}} source={{uri: 'icon_cell_rightarrow'}}/>
-                </View>
-            </View>
-        )
-    }
-}
+var CommonCell = require('./TabTopCommonView');
 
 export default class TabHot extends Component {
 
@@ -47,7 +24,6 @@ export default class TabHot extends Component {
         //回调函数
         popToHomeView: null
     }
-
 
     render() {
         return (
@@ -67,7 +43,6 @@ export default class TabHot extends Component {
             </View>
         );
     }
-
 
     dealWithImgUrl(url) {
         if (url.search('w.h') == -1)

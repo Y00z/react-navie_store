@@ -16,42 +16,7 @@ import {
 var Dimensions = require('Dimensions')
 var {width, height} = Dimensions.get('window')
 var XMG_Home_D5 = require('./../../LocalData/XMG_Home_D5.json')
-
-class CommonCell extends Component {
-
-    defaultProps = {
-        leftImg: '',
-        leftTitle: '',
-        rightTitle: '',
-        jumpto:'',
-        callBackClickCell: null
-    }
-
-    render() {
-        return (
-            <TouchableOpacity onPress={() => {
-                this.clickItem(this.props.jumpto,this.props.rightTitle)
-            }}>
-                <View style={styles.container}>
-                    <View style={styles.boundaryStyle}>
-                        <Image style={{width: 25, height: 25, marginRight: 5}} source={{uri: this.props.leftImg}}/>
-                        <Text>{this.props.leftTitle}</Text>
-                    </View>
-                    <View style={styles.boundaryStyle}>
-                        <Text>{this.props.rightTitle}</Text>
-                        <Image style={{width: 15, height: 15, marginLeft: 5}} source={{uri: 'icon_cell_rightarrow'}}/>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-
-
-    clickItem(url, name) {
-        if (this.props.callBackClickCell == null) return
-        this.props.callBackClickCell(url, name)
-    }
-}
+var CommonCell = require('./TabTopCommonView');
 
 export default class TabShopTopView extends Component {
 
@@ -69,7 +34,9 @@ export default class TabShopTopView extends Component {
                     leftTitle="购物中心"
                     rightTitle={XMG_Home_D5.tips}
                     jumpto={XMG_Home_D5.jumpto}
-                    callBackClickCell={(url,name)=>{this.clickItem(url,name)}}
+                    callBackClickCell={(url, name) => {
+                        this.clickItem(url, name)
+                    }}
                 />
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={{backgroundColor: 'white', height: 120, marginTop: 2, flexDirection: 'row'}}>
@@ -115,27 +82,6 @@ export default class TabShopTopView extends Component {
         )
         return itemArr;
     }
-
-    clickItem(url, name) {
-        if (url == null) return;
-        this.props.popToHomeView(url, name)
-    }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        width: width,
-        height: 45,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10
-    },
-    boundaryStyle: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-})
 
 module.exports = TabShopTopView;
