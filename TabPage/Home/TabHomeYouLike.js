@@ -89,17 +89,17 @@ export default class TabHomeYouLike extends Component {
         showData.map((data, i) =>
             itemArr.push(
                 <TouchableOpacity key={i} onPress={() => {
-                    {/*this.clickItem(data.detailurl, data.name);*/}
                     alert(i);
                 }}>
                     <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <Image style={{width: 80, height: 60, borderRadius: 10}} source={{uri: this.dealWithImgUrl(data.imageUrl)}}/>
+                        <Image style={{width: 80, height: 60, borderRadius: 10}}
+                               source={{uri: this.dealWithImgUrl(data.imageUrl)}}/>
                         <View style={{
                             flexDirection: 'column',
                             justifyContent: 'space-between',
                             width: width / 2,
                             height: 60,
-                            marginLeft:5
+                            marginLeft: 5
                         }}>
                             <Text style={{color: 'black', fontSize: 14}}>{data.title}</Text>
                             <Text style={{color: 'gray', fontSize: 10}}>{data.subTitle}</Text>

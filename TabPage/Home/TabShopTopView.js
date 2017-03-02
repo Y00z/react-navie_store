@@ -22,22 +22,34 @@ class CommonCell extends Component {
     defaultProps = {
         leftImg: '',
         leftTitle: '',
-        rightTitle: ''
+        rightTitle: '',
+        jumpto:'',
+        callBackClickCell: null
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.boundaryStyle}>
-                    <Image style={{width: 25, height: 25, marginRight: 5}} source={{uri: this.props.leftImg}}/>
-                    <Text>{this.props.leftTitle}</Text>
+            <TouchableOpacity onPress={() => {
+                this.clickItem(this.props.jumpto,this.props.rightTitle)
+            }}>
+                <View style={styles.container}>
+                    <View style={styles.boundaryStyle}>
+                        <Image style={{width: 25, height: 25, marginRight: 5}} source={{uri: this.props.leftImg}}/>
+                        <Text>{this.props.leftTitle}</Text>
+                    </View>
+                    <View style={styles.boundaryStyle}>
+                        <Text>{this.props.rightTitle}</Text>
+                        <Image style={{width: 15, height: 15, marginLeft: 5}} source={{uri: 'icon_cell_rightarrow'}}/>
+                    </View>
                 </View>
-                <View style={styles.boundaryStyle}>
-                    <Text>{this.props.rightTitle}</Text>
-                    <Image style={{width: 15, height: 15, marginLeft: 5}} source={{uri: 'icon_cell_rightarrow'}}/>
-                </View>
-            </View>
+            </TouchableOpacity>
         )
+    }
+
+
+    clickItem(url, name) {
+        if (this.props.callBackClickCell == null) return
+        this.props.callBackClickCell(url, name)
     }
 }
 
@@ -56,6 +68,8 @@ export default class TabShopTopView extends Component {
                     leftImg="gw"
                     leftTitle="购物中心"
                     rightTitle={XMG_Home_D5.tips}
+                    jumpto={XMG_Home_D5.jumpto}
+                    callBackClickCell={(url,name)=>{this.clickItem(url,name)}}
                 />
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={{backgroundColor: 'white', height: 120, marginTop: 2, flexDirection: 'row'}}>
@@ -64,6 +78,11 @@ export default class TabShopTopView extends Component {
                 </ScrollView>
             </View>
         );
+    }
+
+    clickItem(url, name) {
+        if (this.props.popToHomeView == null) return;
+        this.props.popToHomeView(url, name)
     }
 
     renderData() {
@@ -85,7 +104,7 @@ export default class TabShopTopView extends Component {
         showData.map((data, i) =>
             itemArr.push(
                 <TouchableOpacity key={i} onPress={() => {
-                    this.clickItem(data.detailurl,data.name);
+                    this.clickItem(data.detailurl, data.name);
                 }}>
                     <View style={{margin: 10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                         <Image style={{width: 100, height: 80, borderRadius: 10}} source={{uri: data.img}}/>
@@ -97,9 +116,9 @@ export default class TabShopTopView extends Component {
         return itemArr;
     }
 
-    clickItem(url,name) {
+    clickItem(url, name) {
         if (url == null) return;
-        this.props.popToHomeView(url,name)
+        this.props.popToHomeView(url, name)
     }
 }
 

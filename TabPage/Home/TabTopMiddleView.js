@@ -10,7 +10,8 @@ import {
     Text,
     View,
     Image,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 var Dimensions = require("Dimensions");
 var {width, height} = Dimensions.get('window')
@@ -24,24 +25,37 @@ class CommonView extends Component {
         subTitle: '',
         icon: '',
         screenWidth: 0,
+        tplurl: '',
+        callBackClickCell: null
     }
 
     render() {
         return (
-            <View style={[styles.rightTopViewStyle, {width: this.props.screenWidth}]}>
-                <View style={{marginLeft:5}}>
-                    <Text style={{color: this.props.titleColor}}>{this.props.title}</Text>
-                    <Text>{this.props.subTitle}</Text>
+            <TouchableOpacity onPress={()=>{this.clickItem(this.props.tplurl,this.props.title)}}>
+                <View style={[styles.rightTopViewStyle, {width: this.props.screenWidth}]}>
+                    <View style={{marginLeft: 5}}>
+                        <Text style={{color: this.props.titleColor}}>{this.props.title}</Text>
+                        <Text>{this.props.subTitle}</Text>
+                    </View>
+                    <Image style={{width: 80, height: 50, resizeMode: 'contain'}} source={{uri: this.props.icon}}/>
                 </View>
-                <Image style={{width: 80, height: 50, resizeMode: 'contain'}} source={{uri: this.props.icon}}/>
-            </View>
+            </TouchableOpacity>
         );
     }
 
+
+    clickItem(url, name) {
+        if (this.props.callBackClickCell == null) return
+        this.props.callBackClickCell(url, name)
+    }
 }
 
 
 export default class TabTopMiddleView extends Component {
+    defaultProps = {
+        popToHomeView: null
+    }
+
     render() {
         return (
             <View>
@@ -78,11 +92,20 @@ export default class TabTopMiddleView extends Component {
                     icon={data.img}
                     titleColor={data.typeface_color}
                     screenWidth={width}
+                    tplurl={data.tplurl}
+                    callBackClickCell={(url, name) => {
+                        this.clickItem(url, name)
+                    }}
                     key={i}
                 />
             )
         }
         return itemArr
+    }
+
+    clickItem(url, name) {
+        if (this.props.popToHomeView == null) return;
+        this.props.popToHomeView(url, name)
     }
 
 
@@ -107,6 +130,10 @@ export default class TabTopMiddleView extends Component {
                     icon={this.dealWithImgUrl(data.imageurl)}
                     titleColor={data.typeface_color}
                     screenWidth={width / 2}
+                    tplurl={data.tplurl}
+                    callBackClickCell={(url, name) => {
+                        this.clickItem(url, name)
+                    }}
                     key={i}
                 />
             )
